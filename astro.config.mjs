@@ -36,6 +36,7 @@ storyblokStories.data.stories.map((story) => {
 
 // https://astro.build/config
 export default defineConfig({
+  trailingSlash: "ignore",
   output: env.STORYBLOK_IS_PREVIEW === "yes" ? "server" : "static",
 
   integrations: [

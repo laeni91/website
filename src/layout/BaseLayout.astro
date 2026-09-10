@@ -4,6 +4,7 @@ import Footer from '../storyblok/global/Footer.astro'
 import NavBar from '../storyblok/global/NavBar.astro'
 import { useStoryblokApi } from '@storyblok/astro'
 import isPreview from '../utils/isPreview'
+import withTrailingSlash from '../utils/withTrailingSlash'
 import SpeedInsights from '@vercel/speed-insights/astro'
 
 const storyblokApi = useStoryblokApi()
@@ -17,7 +18,7 @@ const menu = data.story.content.menu.map((item) => {
   if (item.page.length === 1) {
     return {
       name: item.Nom,
-      slug: item.page[0].full_slug === 'home' ? '/' : '/' + item.page[0].full_slug,
+      slug: item.page[0].full_slug === 'home' ? '/' : withTrailingSlash('/' + item.page[0].full_slug),
       submenu: []
     }
   } else {
@@ -28,7 +29,7 @@ const menu = data.story.content.menu.map((item) => {
       submenu: item.page.map((subitem) => {
         return {
           name: subitem.name,
-          slug: '/' + subitem.full_slug
+          slug: withTrailingSlash('/' + subitem.full_slug)
         }
       })
     }
@@ -41,7 +42,7 @@ const footer = data.story.content.footer.map((item) => {
     pages: item.page.map((subitem) => {
       return {
         name: subitem.name,
-        slug: subitem.full_slug === 'home' ? '/' : '/' + subitem.full_slug
+        slug: subitem.full_slug === 'home' ? '/' : withTrailingSlash('/' + subitem.full_slug)
       }
     })
   }

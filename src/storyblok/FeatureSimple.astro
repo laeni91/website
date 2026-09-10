@@ -3,6 +3,8 @@ import { storyblokEditable } from '@storyblok/astro'
 import { Image } from 'astro:assets'
 import RichText from './utils/RichText.astro'
 const { blok } = Astro.props
+
+console.log('FeatureSimple blok', blok.image.filename)
 ---
 
 <section class="container featureSimple" {...storyblokEditable(blok)} data-aos="fade-up">

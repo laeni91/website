@@ -4,6 +4,7 @@ import RichText from './utils/RichText.astro'
 import { useStoryblokApi } from '@storyblok/astro'
 import isPreview from '../utils/isPreview'
 import { Image } from 'astro:assets';
+import withTrailingSlash from '../utils/withTrailingSlash'
 
 const { blok } = Astro.props
 
@@ -43,7 +44,7 @@ const stories = data.stories?.sort((a, b) =>
             </div>
             <div class="flex flex-col justify-between">
               <div>
-                <a class="mt-4" href={'/' + article.full_slug}>
+                <a class="mt-4" href={withTrailingSlash('/' + article.full_slug)}>
                   <div class="text-lg lg:text-2xl font-bold group-hover:text-secondary duration-200">
                     <span class="absolute inset-0" />
                     {article.content.titreArticle}

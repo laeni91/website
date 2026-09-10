@@ -2,7 +2,7 @@
 import { Image } from 'astro:assets'
 import InlineSvg from '../utils/InlineSvg.astro'
 const { logo, name, menu } = Astro.props
-const currentPath = Astro.url.pathname
+const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/'
 ---
 
 <header class="flex flex-wrap md:justify-start md:flex-nowrap z-50 w-full border-b border-base-200">
@@ -119,7 +119,8 @@ const currentPath = Astro.url.pathname
                           aria-labelledby="hs-header-base-dropdown">
                           <div class="py-1 md:px-1 space-y-0.5">
                             {item.submenu.map((subitem) => {
-                              if (subitem.slug === currentPath) {
+                              const subitemPath = subitem.slug.replace(/\/$/, '') || '/'
+                              if (subitemPath === currentPath) {
                                 return (
                                   <div>
                                     <a
@@ -147,7 +148,8 @@ const currentPath = Astro.url.pathname
                       </li>
                     )
                   } else {
-                    if (item.slug === currentPath) {
+                    const itemPath = item.slug.replace(/\/$/, '') || '/'
+                    if (itemPath === currentPath) {
                       return (
                         <li>
                           <a
