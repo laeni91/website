@@ -7,6 +7,15 @@ import withTrailingSlash from '../../utils/withTrailingSlash'
 const { content } = Astro.props
 
 const mySchema = cloneDeep(RichTextSchema)
+const originalLink = mySchema.marks.link
+mySchema.marks.link = (node) => {
+  const result = originalLink(node)
+  const href = result?.tag?.[0]?.attrs?.href
+  if (href && !href.startsWith('http') && !href.startsWith('mailto:') && !href.startsWith('#')) {
+    result.tag[0].attrs.href = withTrailingSlash(href)
+  }
+  return result
+}
 let renderedRichText = renderRichText(content, {
   schema: mySchema,
     resolver: (component, blok) => {
