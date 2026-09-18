@@ -24,6 +24,7 @@
     "@vercel/speed-insights": "^1.2.0",
     "aos": "^2.3.4",
     "astro": "^5.7.12",
+    "astro-robots-txt": "^1.0.0",
     "clone-deep": "^4.0.1",
     "culori": "^4.0.1",
     "dotenv": "^16.5.0",
